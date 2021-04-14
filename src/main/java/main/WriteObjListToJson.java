@@ -1,3 +1,5 @@
+package main;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -15,10 +17,10 @@ public class WriteObjListToJson {
         String inputFilePath = args[0];
         String outputFilePath;
         if (args.length == 2) {
-            System.out.println("Output file not found...");
-            System.out.println("Placing output file next to the input");
             outputFilePath = args[1];
         } else {
+            System.out.println("Output file not found...");
+            System.out.println("Placing output file next to the input");
             outputFilePath = inputFilePath.split(".obj")[0] + ".json";
         }
 

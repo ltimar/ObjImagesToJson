@@ -1,3 +1,5 @@
+package main;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,7 +8,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class ObjListFromObjInputFile {
-    // aici citesc din fisier si intorc o lista de obiecte ObiectPtrJson
+    // aici citesc din fisier si intorc o lista de obiecte main.ObiectPtrJson
     private String inputObjFileName;
     private List<ObiectPtrJson> listaObiectePtrJson = new ArrayList<>();
 

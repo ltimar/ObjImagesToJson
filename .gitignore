@@ -1,3 +1,5 @@
 target/
 out/
 dummy/
+.gradle/
+build/
