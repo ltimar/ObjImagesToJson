@@ -1,22 +1,36 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.nio.file.Paths;
 
 public class WriteObjListToJson {
 
-    public static void main(String args[]) {
-        ObjListFromObjInputFile lauObjList = new ObjListFromObjInputFile(args[0]);
+    public static void main(String[] args) {
+
+        if (args.length == 0) {
+            System.out.println("Not enough parameters");
+            return;
+        }
+
+        String inputFilePath = args[0];
+        String outputFilePath;
+        if (args.length == 2) {
+            System.out.println("Output file not found...");
+            System.out.println("Placing output file next to the input");
+            outputFilePath = args[1];
+        } else {
+            outputFilePath = inputFilePath.split(".obj")[0] + ".json";
+        }
+
+        ObjListFromObjInputFile lauObjList = new ObjListFromObjInputFile(inputFilePath);
 
         // create object mapper instance
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(args[1]))) {
+        try {
             // convert map to JSON file
             // sa verific cum arata lista
-            mapper.writeValue(Paths.get(args[1]).toFile(), lauObjList.creareObjectListForJson());
+            mapper.writeValue(Paths.get(outputFilePath).toFile(), lauObjList.creareObjectListForJson());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
